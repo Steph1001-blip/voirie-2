@@ -1,0 +1,95 @@
+
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
+
+export default function VoirieApp() {
+  const [form, setForm] = useState({
+    projet: "",
+    adresse: "",
+    commune: "",
+    type: "Permission de voirie",
+    description: "",
+    contact: "",
+  });
+
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    // Simulation d'envoi
+    console.log("Demande envoyée", form);
+    setStatus("✅ Demande envoyée à la collectivité (simulation)");
+  };
+
+  return (
+    <div className="p-6 grid gap-6">
+      <motion.h1
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-2xl font-bold"
+      >
+        Dépôt de permission de voirie
+      </motion.h1>
+
+      <Card className="rounded-2xl shadow">
+        <CardContent className="grid gap-4 p-4">
+          <Input
+            placeholder="Nom du projet"
+            name="projet"
+            onChange={handleChange}
+          />
+
+          <Input
+            placeholder="Adresse du chantier"
+            name="adresse"
+            onChange={handleChange}
+          />
+
+          <Input
+            placeholder="Commune"
+            name="commune"
+            onChange={handleChange}
+          />
+
+          <Input
+            placeholder="Contact collectivité (email)"
+            name="contact"
+            onChange={handleChange}
+          />
+
+          <Textarea
+            placeholder="Description des travaux"
+            name="description"
+            onChange={handleChange}
+          />
+
+          <Button onClick={handleSubmit} className="mt-2">
+            Envoyer la demande
+          </Button>
+
+          {status && (
+            <p className="text-green-600 font-medium">{status}</p>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-2xl shadow">
+        <CardContent className="p-4">
+          <h2 className="font-semibold mb-2">Suivi des demandes</h2>
+          <ul className="text-sm space-y-1">
+            <li>📌 Projet A - Envoyé - En attente (J+5)</li>
+            <li>📌 Projet B - Relance 1 envoyée</li>
+            <li>📌 Projet C - Validé ✅</li>
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
