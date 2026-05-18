@@ -1,4 +1,3 @@
-
 function envoyer() {
 
   const projet = document.getElementById("projet").value;
