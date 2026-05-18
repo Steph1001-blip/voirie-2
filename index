@@ -1,3 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Permission de voirie</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f4f6f9;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  background: #0078d4;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📡 Dépôt de permission de voirie</h1>
+
+<div class="card">
+
+<input id="projet" placeholder="Nom du projet">
+<input id="adresse" placeholder="Adresse">
+<input id="commune" placeholder="Commune">
+<input id="email" placeholder="Email collectivité">
+
+<textarea id="desc" placeholder="Description"></textarea>
+
+<button onclick="envoyer()">Envoyer</button>
+
+<p id="resultat" class="success"></p>
+
+</div>
+
+<div class="card">
+<h3>📊 Suivi</h3>
+<ul id="liste"></ul>
+</div>
+
+</div>
+
+<script>
+
 function envoyer() {
 
   const projet = document.getElementById("projet").value;
@@ -26,7 +102,6 @@ function envoyer() {
     "Dans l’attente de votre retour.\n\nCordialement"
   );
 
-  // ouvre Outlook / logiciel mail
   window.location.href = `mailto:${email}?subject=${sujet}&body=${body}`;
 
   document.getElementById("resultat").innerText =
@@ -37,3 +112,8 @@ function envoyer() {
 
   document.getElementById("liste").appendChild(li);
 }
+
+</script>
+
+</body>
+</html>
