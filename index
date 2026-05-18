@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test</title>
+  <meta charset="UTF-8">
+  <title>Voirie OK</title>
 </head>
+
 <body>
 
-<h1>✅ TEST OK</h1>
+<h1>✅ SITE CELESTE OK</h1>
+
+<button onclick="alert('OK')">TEST</button>
 
 </body>
 </html>
+``
