@@ -1,21 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Voirie Test</title>
-</head>
-<body>
+function envoyer() {
 
-<h1>✅ Le site fonctionne</h1>
+  const projet = document.getElementById("projet").value;
+  const adresse = document.getElementById("adresse").value;
+  const commune = document.getElementById("commune").value;
+  const email = document.getElementById("email").value;
+  const desc = document.getElementById("desc").value;
 
-<button onclick="test()">Tester</button>
+  if (!projet || !commune || !email) {
+    alert("Remplis projet + commune + email !");
+    return;
+  }
 
-<p id="msg"></p>
+  const sujet = encodeURIComponent(
+    "Demande de permission de voirie - " + projet
+  );
 
-<script>
-function test() {
-  document.getElementById("msg").innerText = "Bouton OK";
+  const body = encodeURIComponent(
+    "Madame, Monsieur,\n\n" +
+    "Dans le cadre du déploiement de notre réseau fibre optique CELESTE,\n" +
+    "nous souhaitons obtenir une permission de voirie.\n\n" +
+    "Projet : " + projet + "\n" +
+    "Adresse : " + adresse + "\n" +
+    "Commune : " + commune + "\n\n" +
+    "Description :\n" + desc + "\n\n" +
+    "Dans l’attente de votre retour.\n\nCordialement"
+  );
+
+  // ouvre Outlook / logiciel mail
+  window.location.href = `mailto:${email}?subject=${sujet}&body=${body}`;
+
+  document.getElementById("resultat").innerText =
+    "✅ Mail prêt à être envoyé";
+
+  const li = document.createElement("li");
+  li.innerText = "📌 " + projet + " - " + commune + " - Mail préparé";
+
+  document.getElementById("liste").appendChild(li);
 }
-</script>
-
-</body>
-</html>
